@@ -1,3 +1,3 @@
-# TypeScript Starter
+# tslang-client
 
-for ME
+Experimental Project for ME :)
