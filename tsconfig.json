@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "alwaysStrict": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    // --
+    "baseUrl": "src",
+    "outDir": "./dist",
+    "lib": ["es2015", "es2015.promise", "es2015.iterable"]
+  },
+  "include": ["./src", "./typings"],
+  "exclude": ["node_modules"]
+}

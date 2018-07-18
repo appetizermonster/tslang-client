@@ -1,0 +1,28 @@
+{
+  "extends": ["tslint:latest", "tslint-config-prettier"],
+  "rulesDirectory": ["tslint-plugin-prettier"],
+  "rules": {
+    "prettier": true,
+    "interface-name": [true, "never-prefix"],
+    "object-literal-sort-keys": false,
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false,
+    "ban-types": false,
+    "no-console": { "severity": "warning" },
+    "no-var-requires": false,
+    "prefer-conditional-expression": false,
+    "jsx-boolean-value": false,
+    "ordered-imports": [true, { "grouped-imports": true }],
+    "no-unused-variable": [true, { "ignore-pattern": "^_" }],
+    "no-unused-expression": [true, "allow-tagged-template"],
+    "max-classes-per-file": false,
+    "no-empty-interface": false,
+    "no-object-literal-type-assertion": false,
+    "member-ordering": false,
+    "no-namespace": false,
+    "jsx-no-lambda": false
+  },
+  "jsRules": {
+    "object-literal-sort-keys": false
+  }
+}
