@@ -1,4 +1,4 @@
-# tslang-client
+# tslang-client &middot; [![Travis (.org) branch](https://img.shields.io/travis/appetizermonster/tslang-client/master.svg?style=flat-square)](https://travis-ci.org/appetizermonster/tslang-client)
 
 A client implementation for `tsserver` for TypeScript.
 Currently, it's just working but not completely tested.
