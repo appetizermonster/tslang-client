@@ -22,5 +22,8 @@
   },
   "peerDependencies": {
     "typescript": ">=2.8"
+  },
+  "dependencies": {
+    "rxjs": "^6.2.2"
   }
 }

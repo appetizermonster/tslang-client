@@ -1,21 +1,45 @@
-import cp, { ChildProcess } from 'child_process';
+import cp from 'child_process';
 import fs from 'fs';
-import { getTSServerPath } from 'utils';
+
+import JsonProcess from './JsonProcess';
+import { getTSServerPath } from './utils';
+
+export interface TsLangClientOptions {
+  debugMode?: boolean;
+}
 
 class TsLangClient {
-  private server: ChildProcess;
+  private jsonProc: JsonProcess;
 
-  public async connect() {
+  constructor(private readonly opts: TsLangClientOptions = {}) {}
+
+  public connect() {
     const tsServerPath = getTSServerPath();
     if (!fs.existsSync(tsServerPath)) {
       throw new Error('Cannot find tsserver library');
     }
-    this.server = cp.fork(tsServerPath, [], { silent: true });
+
+    const proc = cp.fork(tsServerPath, [], { silent: true });
+    if (!proc) {
+      throw new Error('Cannot fork tsserver library');
+    }
+
+    this.jsonProc = new JsonProcess(proc, this.opts.debugMode || false);
   }
 
   public close() {
-    this.server.kill();
-    this.server = null;
+    if (this.jsonProc) {
+      this.jsonProc.close();
+      this.jsonProc = null;
+    }
+  }
+
+  public async invoke(command: string, args: {}) {
+    return this.jsonProc.sendCommand(command, args, true);
+  }
+
+  public async invokeWithoutReply(command: string, args: {}) {
+    return this.jsonProc.sendCommand(command, args, false);
   }
 }
 
