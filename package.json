@@ -1,10 +1,11 @@
 {
   "name": "tslang-client",
   "version": "0.0.1",
-  "description": "a client for tsserver",
-  "main": "index.js",
+  "description": "A client implementation for tsserver for TypeScript",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc -d",
     "test": "jest --watch"
   },
   "author": "Heejin Lee <hjhome2000@naver.com>",
