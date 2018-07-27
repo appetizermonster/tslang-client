@@ -3,6 +3,7 @@ import fs from 'fs';
 
 import JsonProcess from './JsonProcess';
 import { getTSServerPath } from './utils';
+import { TsServerMessage } from './types';
 
 export interface TsLangClientOptions {
   debugMode?: boolean;
@@ -34,12 +35,12 @@ class TsLangClient {
     }
   }
 
-  public async invoke(command: string, args: {}) {
+  public async invoke(command: string, args: {}): Promise<TsServerMessage> {
     return this.jsonProc.sendCommand(command, args, true);
   }
 
   public async invokeWithoutReply(command: string, args: {}) {
-    return this.jsonProc.sendCommand(command, args, false);
+    await this.jsonProc.sendCommand(command, args, false);
   }
 }
 
