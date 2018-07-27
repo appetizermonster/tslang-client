@@ -1,7 +1,18 @@
 {
   "name": "tslang-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A client implementation for tsserver for TypeScript",
+  "author": "Heejin Lee <hjhome2000@naver.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appetizermonster/tslang-client.git"
+  },
+  "homepage": "https://github.com/appetizermonster/tslang-client",
+  "keywords": [
+    "typescript",
+    "tsserver"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
@@ -10,8 +21,6 @@
     "test": "jest --watch",
     "test_ci": "jest"
   },
-  "author": "Heejin Lee <hjhome2000@naver.com>",
-  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^23.3.0",
     "@types/node": "^10.5.2",
