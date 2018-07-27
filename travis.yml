@@ -1,0 +1,7 @@
+langauge: node_js
+node_js:
+  - "9"
+script:
+  - npm run lint
+  - npm run test_ci
+  - npm run build

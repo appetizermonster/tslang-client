@@ -6,7 +6,9 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc -d",
-    "test": "jest --watch"
+    "lint": "tslint --project .",
+    "test": "jest --watch",
+    "test_ci": "jest"
   },
   "author": "Heejin Lee <hjhome2000@naver.com>",
   "license": "MIT",
