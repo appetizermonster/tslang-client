@@ -2,8 +2,8 @@ import cp from 'child_process';
 import fs from 'fs';
 
 import JsonProcess from './JsonProcess';
-import { getTSServerPath } from './utils';
 import { TsServerMessage } from './types';
+import { getTSServerPath } from './utils';
 
 export interface TsLangClientOptions {
   debugMode?: boolean;
