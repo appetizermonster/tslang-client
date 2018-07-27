@@ -1,20 +1,25 @@
-import _cp from 'child_process';
-import TsLangClient from 'TsLangClient';
+import cp from 'child_process';
+import fs from 'fs';
 
-jest.mock('child_process');
-
-const cp = _cp as jest.Mocked<typeof _cp>;
+import TsLangClient from '../TsLangClient';
 
 describe('TsLangClient', () => {
   describe('connect', () => {
     it('should fork tsserver', async () => {
+      const fork = jest.spyOn(cp, 'fork');
       const client = new TsLangClient();
       await client.connect();
-      expect(cp.fork).toBeCalled();
+      expect(fork).toBeCalled();
     });
 
-    it('should throw error if it failed to fork', async () => {
-      cp.fork.mockImplementationOnce(() => {
+    it('should throw error if tsserver not found', async () => {
+      jest.spyOn(fs, 'existsSync').mockImplementationOnce(() => false);
+      const client = new TsLangClient();
+      await expect(client.connect()).rejects.toBeDefined();
+    });
+
+    it('should throw error if fork fails', async () => {
+      jest.spyOn(cp, 'fork').mockImplementationOnce(() => {
         throw new Error();
       });
       const client = new TsLangClient();
@@ -25,7 +30,7 @@ describe('TsLangClient', () => {
   describe('close', () => {
     it('should kill forked tsserver', async () => {
       const proc = { kill: jest.fn() };
-      cp.fork.mockImplementationOnce(() => proc);
+      jest.spyOn(cp, 'fork').mockImplementationOnce(() => proc);
 
       const client = new TsLangClient();
       await client.connect();

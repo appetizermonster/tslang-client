@@ -1,4 +1,5 @@
 import cp, { ChildProcess } from 'child_process';
+import fs from 'fs';
 import { getTSServerPath } from 'utils';
 
 class TsLangClient {
@@ -6,6 +7,9 @@ class TsLangClient {
 
   public async connect() {
     const tsServerPath = getTSServerPath();
+    if (!fs.existsSync(tsServerPath)) {
+      throw new Error('Cannot find tsserver library');
+    }
     this.server = cp.fork(tsServerPath, [], { silent: true });
   }
 

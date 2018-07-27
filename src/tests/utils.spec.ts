@@ -1,4 +1,4 @@
-import { getTSServerPath } from 'utils';
+import { getTSServerPath } from '../utils';
 
 describe('utils', () => {
   describe('#getTSServerPath', () => {
@@ -9,7 +9,7 @@ describe('utils', () => {
 
     it('should return the tsserver path', () => {
       const tsServerPath = getTSServerPath();
-      expect(tsServerPath.endsWith('tsserver')).toBeTruthy();
+      expect(tsServerPath.endsWith('tsserver.js')).toBeTruthy();
     });
   });
 });
