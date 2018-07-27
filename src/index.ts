@@ -1,3 +1,3 @@
-import TsLangClient from 'TsLangClient';
+import TsLangClient from './TsLangClient';
 
 export default TsLangClient;
