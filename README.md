@@ -17,6 +17,11 @@ So I made this.
 ## Requirements
 - TypeScript 2.8 or above
 
+## Installation
+```bash
+npm install --save-dev tslang-client
+```
+
 ## Usage
 ```typescript
 import TsLangClient from 'tslang-client';
