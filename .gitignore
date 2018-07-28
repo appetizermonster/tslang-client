@@ -2,3 +2,4 @@
 node_modules
 /.vscode
 /tslang-client-*.tgz
+/.rpt2_cache
