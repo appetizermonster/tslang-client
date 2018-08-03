@@ -31,7 +31,7 @@ class JsonProcess {
       if (this.debugMode) {
         console.log('JSON Message: ' + msg);
       }
-      this.messageEvent.emit(msg);
+      this.messageEvent.emit(msg as any);
     }
   }
 
