@@ -20,7 +20,8 @@
     "build": "rollup -c",
     "lint": "tslint --project .",
     "test": "jest --watch",
-    "test_ci": "jest"
+    "test_ci": "jest",
+    "example": "ts-node -O '{\"module\": \"commonjs\"}'"
   },
   "devDependencies": {
     "@types/jest": "^23.3.0",
@@ -30,6 +31,7 @@
     "rollup": "^0.63.4",
     "rollup-plugin-typescript2": "^0.16.1",
     "ts-jest": "^23.0.1",
+    "ts-node": "^7.0.0",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-plugin-prettier": "^1.3.0",

@@ -23,34 +23,26 @@ npm install --save-dev tslang-client
 ```
 
 ## Usage
-### TypeScript / ES2015
 ```typescript
 import { TsLangClient } from 'tslang-client';
 
-(async () => {
-  const tslangClient = new TsLangClient();
-  await tslangClient.connect();
-  
-  // Invoke a function without reply
-  await tslangClient.invokeWithoutReply('open', { file: 'file.ts' });
+// Create a client instance
+const client = new TsLangClient();
 
-  // Invoke a function with reply
-  const result = await tslangClient.invoke('references', { file: 'file.ts', line: 1, offset: 15 });
-})();
+// Connect to installed tsserver
+await client.connect();
+
+// Call open(file) api
+await client.api.open({ file: 'filename.ts' });
+
+// Close the connection
+client.close();
 ```
 
-### CommonJS
+### Import with CommonJS
+`tslang-client` supports CommonJS-style module along with the ES2015-style.
 ```javascript
 const { TsLangClient } = require('tslang-client');
-
-(async () => {
-  const tslangClient = new TsLangClient();
-  await tslangClient.connect();
-  
-  // Invoke a function without reply
-  await tslangClient.invokeWithoutReply('open', { file: 'file.ts' });
-
-  // Invoke a function with reply
-  const result = await tslangClient.invoke('references', { file: 'file.ts', line: 1, offset: 15 });
-})();
 ```
+
+## EOF
