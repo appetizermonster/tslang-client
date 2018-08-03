@@ -1,6 +1,6 @@
 {
   "name": "tslang-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A client implementation for tsserver for TypeScript",
   "author": "Heejin Lee <hjhome2000@naver.com>",
   "license": "MIT",
