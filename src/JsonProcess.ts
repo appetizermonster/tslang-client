@@ -1,13 +1,13 @@
 import { ChildProcess } from 'child_process';
 import { filter, take, timeout } from 'rxjs/operators';
+import * as protocol from 'typescript/lib/protocol';
 
 import Event from './Event';
 import JsonMessageBuffer from './JsonMessageBuffer';
-import { TsServerMessage } from './types';
 
 class JsonProcess {
   private messageBuffer: JsonMessageBuffer = new JsonMessageBuffer();
-  private messageEvent: Event<TsServerMessage> = new Event();
+  private messageEvent: Event<protocol.Response> = new Event();
   private nextSeq: number = 0;
 
   constructor(
@@ -29,8 +29,7 @@ class JsonProcess {
     const msgs = this.messageBuffer.consume();
     for (const msg of msgs) {
       if (this.debugMode) {
-        console.log('JsonProcess --');
-        console.log(msg);
+        console.log('JSON Message: ' + msg);
       }
       this.messageEvent.emit(msg);
     }
@@ -55,7 +54,7 @@ class JsonProcess {
     if (!serverMsg.success) {
       throw new Error(serverMsg.message);
     }
-    return serverMsg;
+    return serverMsg as protocol.Response;
   }
 }
 

@@ -2,7 +2,7 @@ import cp from 'child_process';
 import fs from 'fs';
 
 import JsonProcess from './JsonProcess';
-import { TsServerMessage } from './types';
+import TsLangApi from './TsLangApi';
 import { getTSServerPath } from './utils';
 
 export interface TsLangClientOptions {
@@ -11,6 +11,7 @@ export interface TsLangClientOptions {
 
 class TsLangClient {
   private jsonProc: JsonProcess;
+  private __api: TsLangApi = null; // tslint:disable-line
 
   constructor(private readonly opts: TsLangClientOptions = {}) {}
 
@@ -26,6 +27,7 @@ class TsLangClient {
     }
 
     this.jsonProc = new JsonProcess(proc, this.opts.debugMode || false);
+    this.__api = new TsLangApi(this.jsonProc);
   }
 
   public close() {
@@ -35,12 +37,11 @@ class TsLangClient {
     }
   }
 
-  public async invoke(command: string, args: {}): Promise<TsServerMessage> {
-    return this.jsonProc.sendCommand(command, args, true);
-  }
-
-  public async invokeWithoutReply(command: string, args: {}) {
-    await this.jsonProc.sendCommand(command, args, false);
+  public get api() {
+    if (!this.__api) {
+      throw new Error('You should invoke connect first');
+    }
+    return this.__api;
   }
 }
 

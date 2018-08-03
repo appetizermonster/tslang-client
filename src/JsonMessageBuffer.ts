@@ -1,5 +1,3 @@
-import { TsServerMessage } from './types';
-
 class JsonMessageBuffer {
   private bufferedString = '';
 
@@ -7,9 +5,9 @@ class JsonMessageBuffer {
     this.bufferedString += str;
   }
 
-  public consume(): TsServerMessage[] {
+  public consume(): Array<{}> {
     const HEADER_PREFIX = 'Content-Length: ';
-    const arr: TsServerMessage[] = [];
+    const arr: Array<{}> = [];
     const lines = this.bufferedString.split(/\r?\n/);
     while (lines.length >= 3) {
       const header = lines[0];
@@ -26,7 +24,7 @@ class JsonMessageBuffer {
         throw new Error('Content-Length mismatched');
       }
 
-      const obj = JSON.parse(body) as TsServerMessage;
+      const obj = JSON.parse(body) as {};
       arr.push(obj);
       lines.splice(0, 3);
     }
