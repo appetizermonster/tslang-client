@@ -13,6 +13,10 @@ class TsLangApi {
 
   // TODO add more apis
   public readonly open = this.defineApi<p.OpenRequestArgs>('open', false);
+  public readonly quickInfo = this.defineApi<
+    p.FileLocationRequestArgs,
+    p.QuickInfoResponse
+  >('quickinfo');
   public readonly references = this.defineApi<
     p.FileLocationRequestArgs,
     p.ReferencesResponse
